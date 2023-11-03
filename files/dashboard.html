@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Dashboard - Brand</title>
+	<link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+	<link rel="stylesheet" href="./assets/css/styles.min.css">
+	<script>
+		// const user = window.electronAPI.getUser(); // Assume the getUser function is exposed
+		// if (!user.success) {
+		//     window.location.href = 'index.html';
+		// }
+		const username = localStorage.getItem('user');
+		if (!username) {
+			window.location.href = 'index.html';
+		}
+
+
+	</script>
+</head>
+
+<body id="page-top">
+	<div id="wrapper">
+		<nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+			<div class="container-fluid d-flex flex-column p-0"><a
+					class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+					<p><em>समाज कल्याण, लातूर</em></p>
+				</a>
+				<hr class="sidebar-divider my-0">
+				<ul class="navbar-nav text-light" id="accordionSidebar">
+					<li class="nav-item"><a class="nav-link active" href="./dashboard.html"><i
+								class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="./student/students.html"><i
+								class="fas fa-user"></i><span>Students</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="./Room/rooms.html"><i
+								class="fas fa-table"></i><span>Rooms</span></a></li>
+					<li class="nav-item"><a class="nav-link" href="./logout.html" id="logoutBtn"><i
+								class="far fa-user-circle"></i><span>Log-Out</span></a></li>
+					<li class="nav-item"></li>
+				</ul>
+				<div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+						id="sidebarToggle" type="button"></button></div>
+			</div>
+		</nav>
+		<div class="d-flex flex-column" id="content-wrapper">
+			<div id="content">
+				<nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+					<div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+							id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+						<form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+							<div class="input-group"><input class="bg-light form-control border-0 small" type="text"
+									placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i
+										class="fas fa-search"></i></button></div>
+						</form>
+						<ul class="navbar-nav flex-nowrap ms-auto">
+							<li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link"
+									aria-expanded="false" data-bs-toggle="dropdown" href="#"><i
+										class="fas fa-search"></i></a>
+								<div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in"
+									aria-labelledby="searchDropdown">
+									<form class="me-auto navbar-search w-100">
+										<div class="input-group"><input class="bg-light form-control border-0 small"
+												type="text" placeholder="Search for ...">
+											<div class="input-group-append"><button class="btn btn-primary py-0"
+													type="button"><i class="fas fa-search"></i></button></div>
+										</div>
+									</form>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div class="container-fluid">
+					<div class="d-sm-flex justify-content-between align-items-center mb-4">
+						<h3 class="text-dark mb-0">Dashboard</h3>
+					</div>
+					<div class="row">
+						<div class="col-md-6 col-xl-3 mb-4">
+							<div class="card shadow border-start-primary py-2">
+								<div class="card-body">
+									<div class="row align-items-center no-gutters">
+										<div class="col me-2">
+											<div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Total
+													students</span></div>
+											<div class="text-dark fw-bold h5 mb-0"><span id="total-students"></span>
+											</div>
+										</div>
+										<div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-xl-3 mb-4">
+							<div class="card shadow border-start-success py-2">
+								<div class="card-body">
+									<div class="row align-items-center no-gutters">
+										<div class="col me-2">
+											<div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Empty
+													Seats</span></div>
+											<div class="text-dark fw-bold h5 mb-0"><span id="empty-seats"></span></div>
+										</div>
+										<div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-xl-3 mb-4">
+							<div class="card shadow border-start-info py-2">
+								<div class="card-body">
+									<div class="row align-items-center no-gutters">
+										<div class="col me-2">
+											<div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Full
+													Rooms </span></div>
+											<div class="row g-0 align-items-center">
+												<div class="col-auto">
+													<div class="text-dark fw-bold h5 mb-0 me-3"><span
+															id="occupied-seats"></span></div>
+												</div>
+											</div>
+										</div>
+										<div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-xl-3 mb-4">
+							<div class="card shadow border-start-warning py-2">
+								<div class="card-body">
+									<div class="row align-items-center no-gutters">
+										<div class="col me-2">
+											<div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>reserved
+													rooms</span></div>
+											<div class="text-dark fw-bold h5 mb-0"><span id="reserved-rooms"></span>
+											</div>
+										</div>
+										<div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-6 mb-4">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="text-primary fw-bold m-0">Students Review</h6>
+								</div>
+								<div class="card-body">
+									<h4 class="small fw-bold">११ वी &amp; १२ वी <span class="float-end">20%</span></h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-danger" aria-valuenow="20" aria-valuemin="0"
+											aria-valuemax="100" style="width: 20%;" id="progress-11th-12th"><span
+												class="visually-hidden">20%</span></div>
+									</div>
+									<h4 class="small fw-bold">पदवी&nbsp;<span class="float-end">40%</span></h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-warning" aria-valuenow="40" aria-valuemin="0"
+											aria-valuemax="100" style="width: 40%;" id="progress-graduation"><span
+												class="visually-hidden">40%</span></div>
+									</div>
+									<h4 class="small fw-bold">पदवीयोत्तर <span class="float-end">60%</span></h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%;" id="progress-post-graduation"><span
+												class="visually-hidden">60%</span></div>
+									</div>
+									<h4 class="small fw-bold">व्यावसायिक<span class="float-end">60%</span></h4>
+									<div class="progress mb-4">
+										<div class="progress-bar bg-primary" aria-valuenow="60" aria-valuemin="0"
+											aria-valuemax="100" style="width: 60%;" id="progress-professional"><span
+												class="visually-hidden">60%</span></div>
+									</div>
+
+
+									<!-- <div class="progress mb-4">
+										<div class="progress-bar bg-success" aria-valuenow="100" aria-valuemin="0"
+											aria-valuemax="100" style="width: 100%;"><span
+												class="visually-hidden">100%</span></div>
+									</div> -->
+								</div>
+							</div>
+						</div>
+						<div class="col">
+							<div class="row">
+								<div class="col-lg-6 mb-4">
+									<a href="">
+										<div id="download-report" class="card text-white bg-primary shadow">
+											<div class="card-body">
+												<p class="text-center m-0">Download Student Report</p>
+											</div>
+										</div>
+									</a>
+								</div>
+
+								<div id="download-room-report" class="col-lg-6 mb-4">
+									<a href="">
+										<div class="card text-white bg-success shadow">
+											<div class="card-body">
+												<p class="text-center m-0">Download Room Status</p>
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="card shadow">
+								<div class="card-header py-3">
+									<p class="text-primary m-0 fw-bold">Students Info</p>
+								</div>
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-6 text-nowrap">
+											<div id="dataTable_length" class="dataTables_length"
+												aria-controls="dataTable">
+												<label class="form-label">Show&nbsp;<select
+														class="d-inline-block form-select form-select-sm" id="records-per-page">
+														<option value="10" selected="">10</option>
+														<option value="25">25</option>
+														<option value="50">50</option>
+														<option value="100">100</option>
+													</select>&nbsp;</label>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="text-md-end dataTables_filter" id="dataTable_filter"><label
+													class="form-label"><input id="search" type="search"
+														class="form-control form-control-sm" aria-controls="dataTable"
+														placeholder="Search"></label></div>
+										</div>
+									</div>
+									<div class="table-responsive table mt-2" id="dataTable-1" role="grid"
+										aria-describedby="dataTable_info">
+										<table class="table my-0" id="user-table">
+											<thead>
+												<tr>
+													<th>ID</th>
+													<th>Name</th>
+													<th>Phone No</th>
+													<th>Room No</th>
+													<th>Education</th>
+													<th>Address</th>
+													<th>View</th>
+													<th>Edit</th>
+													<th>Delete</th>
+												</tr>
+											</thead>
+
+
+											<tbody id="studentTableBody">
+
+											</tbody>
+
+										</table>
+									</div>
+									<div class="row">
+										<!-- <div class="col-md-6 align-self-center">
+											<p id="dataTable_info" class="dataTables_info" role="status"
+												aria-live="polite">
+												Showing 1 to 10 of 27</p>
+										</div> -->
+										<div class="col-md-6">
+											<nav
+												class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+												<ul class="pagination" id="pagination">
+													<li class="page-item disabled"><a class="page-link"
+															aria-label="Previous" href="#"><span
+																aria-hidden="true">«</span></a></li>
+													<li class="page-item active"><a class="page-link" href="#">1</a>
+													</li>
+													<li class="page-item"><a class="page-link" href="#">2</a></li>
+													<li class="page-item"><a class="page-link" href="#">3</a></li>
+													<li class="page-item"><a class="page-link" aria-label="Next"
+															href="#"><span aria-hidden="true">»</span></a></li>
+												</ul>
+											</nav>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="bg-white sticky-footer">
+				<div class="container my-auto">
+					<div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
+				</div>
+			</footer>
+		</div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="./assets/js/script.min.js"></script>
+	<script>
+
+
+		document.addEventListener('DOMContentLoaded', async () => {
+			updateDashboardData();
+			updateProgressBars();
+			downloadStudentReport();
+			downloadRoomReport();
+		});
+
+
+		function downloadStudentReport() {
+
+
+			const downloadButton = document.getElementById('download-report');
+			downloadButton.addEventListener('click', async () => {
+				const filePath = await window.electronAPI.generateExcelReport();
+				console.log(filePath);
+				// Open a dialog to download the generated Excel file
+				window.electronAPI.showSaveDialog(filePath);
+			});
+			setInterval(updateDashboardData, 5000);
+		}
+
+
+		function downloadRoomReport() {
+
+			const downloadButton = document.getElementById('download-room-report');
+			downloadButton.addEventListener('click', async () => {
+				const filePath = await window.electronAPI.generateRoomExcelReport();
+				console.log(filePath);
+				// Open a dialog to download the generated Excel file
+				window.electronAPI.showSaveDialog(filePath);
+			});
+			setInterval(updateDashboardData, 5000);
+		}
+
+
+		async function updateDashboardData() {
+			const dashboardData = await window.electronAPI.getDashboardData();
+
+			// Update the HTML elements with the fetched values
+			document.getElementById('total-students').textContent = `${dashboardData.totalStudents}`;
+			document.getElementById('empty-seats').textContent = `${dashboardData.emptySeats}`;
+			document.getElementById('occupied-seats').textContent = `${dashboardData.fullRooms}`;
+			document.getElementById('reserved-rooms').textContent = `${dashboardData.reservedRooms}`;
+		}
+
+
+		async function updateProgressBars() {
+			const progressData = await window.electronAPI.getEducationProgress();
+			console.log(progressData)
+			// Update progress bars for each category
+			document.getElementById('progress-11th-12th').style.width = `${progressData['11th-12th']}%`;
+			document.getElementById('progress-graduation').style.width = `${progressData['graduation']}%`;
+			document.getElementById('progress-post-graduation').style.width = `${progressData['post-graduation']}%`;
+			document.getElementById('progress-professional').style.width = `${progressData['professional']}%`;
+			document.getElementsByClassName("float-end")[0].innerText = `${progressData['11th-12th']}%`;
+			document.getElementsByClassName("float-end")[1].innerText = `${progressData['graduation']}%`;
+			document.getElementsByClassName("float-end")[2].innerText = `${progressData['post-graduation']}%`;
+			document.getElementsByClassName("float-end")[3].innerText = `${progressData['professional']}%`;
+
+
+		}
+
+
+
+
+
+	</script>
+
+	<script>
+
+
+const userTable = document.getElementById('user-table');
+    const recordsPerPageSelect = document.getElementById('records-per-page');
+    const searchInput = document.getElementById('search');
+    const paginationList = document.getElementById('pagination');
+
+    let studentData = []; // Store all student data here
+    let currentPage = 1;
+    let recordsPerPage = 25;
+    let searchQuery = '';
+
+    // Function to update the UI
+    function updateUI() {
+      const startIndex = (currentPage - 1) * recordsPerPage;
+      const endIndex = startIndex + recordsPerPage;
+
+	  const filteredData = studentData.filter((student) => {
+    const nameMatches = student.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const idMatches = student.admissionId.toLowerCase().includes(searchQuery.toLowerCase());
+    return nameMatches || idMatches;
+  });
+
+
+      const tbody = userTable.querySelector('tbody');
+      tbody.innerHTML = ''; // Clear the table body before inserting new data
+
+      const pageData = filteredData.slice(startIndex, endIndex);
+
+      pageData.forEach((student) => {
+        tbody.insertAdjacentHTML('beforeend', `<tr>
+          <td>${student.admissionId}</td>
+          <td>${student.name}</td>
+          <td>${student.phone}</td>
+          <td>${student.room}</td>
+          <td>${student.eduCategory}::${student.eduCourse}(${student.eduYear})</td>
+          <td>${student.address}</td>
+          <td style="text-align: center;"><a href="#"><i class="fas fa-eye text-info" style="font-size: 23px;height: 20px;"></i></a></td>
+          <td style="text-align: center;"><a href="#"><i class="fas fa-pen text-success" style="height: 20px;font-size: 20px;"></i></a></td>
+          <td style="text-align: center;"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor" class="text-danger" style="text-align: center;font-size: 30px;"><path d="M0 0h24v24H0z" fill="none"></path><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"></path></svg></a></td>
+        </tr>`);
+      });
+
+      // Update pagination here
+ // Update pagination here
+const totalPages = Math.ceil(filteredData.length / recordsPerPage);
+paginationList.innerHTML = '';
+
+// Add a "Previous" button
+const previousPage = document.createElement('li');
+previousPage.innerHTML = `<a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>`;
+previousPage.addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+    updateUI();
+  }
+});
+previousPage.classList.add('page-item');
+paginationList.appendChild(previousPage);
+
+for (let i = 1; i <= totalPages; i++) {
+  const pageLink = document.createElement('li');
+  pageLink.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+  pageLink.classList.add('page-item');
+  if (i === currentPage) {
+    pageLink.classList.add('active');
+  }
+  pageLink.addEventListener('click', () => {
+    currentPage = i;
+    updateUI();
+  });
+  paginationList.appendChild(pageLink);
+}
+
+// Add a "Next" button
+const nextPage = document.createElement('li');
+nextPage.innerHTML = `<a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a>`;
+nextPage.addEventListener('click', () => {
+  if (currentPage < totalPages) {
+    currentPage++;
+    updateUI();
+  }
+});
+nextPage.classList.add('page-item');
+paginationList.appendChild(nextPage);
+
+    }
+
+    // Event listeners for filter and search controls
+    recordsPerPageSelect.addEventListener('change', () => {
+      recordsPerPage = parseInt(recordsPerPageSelect.value);
+      currentPage = 1;
+      updateUI();
+    });
+
+    searchInput.addEventListener('input', () => {
+      searchQuery = searchInput.value;
+      currentPage = 1;
+      updateUI();
+    });
+
+    // Fetch and display user data
+    async function fetchAndDisplayUserData() {
+      try {
+        // Replace the next line with your actual code to fetch student data
+        const userData = await window.electronAPI.fetchStudentData();
+      
+        studentData = userData;
+        updateUI();
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    }
+
+    // Call the function to fetch and display user data
+    fetchAndDisplayUserData();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "node-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^25.4.0"
+  },
+  "dependencies": {
+    "ejs-electron": "^2.1.1",
+    "electron-store": "^8.1.0",
+    "excel4node": "^1.8.2",
+    "sqlite3": "^5.1.6",
+    "sweetalert2": "^11.7.21"
+  }
+}

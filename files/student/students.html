@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Profile - Brand</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="../assets/css/styles.min.css">
+  
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+            <div class="container-fluid d-flex flex-column p-0"><a
+                    class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                    <p><em>समाज कल्याण, लातूर</em></p>
+                </a>
+                <hr class="sidebar-divider my-0">
+                <ul class="navbar-nav text-light" id="accordionSidebar">
+                    <li class="nav-item"><a class="nav-link" href="../dashboard.html"><i
+                                class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="../student/students.html"><i
+                                class="fas fa-user"></i><span>Students</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../Room/rooms.html"><i
+                                class="fas fa-table"></i><span>/Rooms</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../logout.html"><i
+                                class="far fa-user-circle"></i><span>Log-Out</span></a></li>
+                    <li class="nav-item"></li>
+                </ul>
+                <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0"
+                        id="sidebarToggle" type="button"></button></div>
+            </div>
+        </nav>
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+                    <div class="container-fluid"><button class="btn btn-link d-md-none rounded-circle me-3"
+                            id="sidebarToggleTop" type="button"><i class="fas fa-bars"></i></button>
+                        <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search">
+                            <div class="input-group"><input class="bg-light form-control border-0 small" type="text"
+                                    placeholder="Search for ..."><button class="btn btn-primary py-0" type="button"><i
+                                        class="fas fa-search"></i></button></div>
+                        </form>
+                        <ul class="navbar-nav flex-nowrap ms-auto">
+                            <li class="nav-item dropdown d-sm-none no-arrow"><a class="dropdown-toggle nav-link"
+                                    aria-expanded="false" data-bs-toggle="dropdown" href="#"><i
+                                        class="fas fa-search"></i></a>
+                                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in"
+                                    aria-labelledby="searchDropdown">
+                                    <form class="me-auto navbar-search w-100">
+                                        <div class="input-group"><input class="bg-light form-control border-0 small"
+                                                type="text" placeholder="Search for ...">
+                                            <div class="input-group-append"><button class="btn btn-primary py-0"
+                                                    type="button"><i class="fas fa-search"></i></button></div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Students</h3><a
+                            class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="add-new.html"><i
+                                class="fas fa-user-plus fa-sm text-white-50"></i>&nbsp;Add New</a>
+                    </div>
+                    <div class="card shadow">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 fw-bold">Students Info</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6 text-nowrap">
+                                    <div id="dataTable_length" class="dataTables_length"
+                                        aria-controls="dataTable">
+                                        <label class="form-label">Show&nbsp;<select
+                                                class="d-inline-block form-select form-select-sm" id="records-per-page">
+                                                <option value="10" selected="">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                            </select>&nbsp;</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="text-md-end dataTables_filter" id="dataTable_filter"><label
+                                            class="form-label"><input id="search" type="search"
+                                                class="form-control form-control-sm" aria-controls="dataTable"
+                                                placeholder="Search"></label></div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table mt-2" id="dataTable-1" role="grid"
+                                aria-describedby="dataTable_info">
+                                <table class="table my-0" id="user-table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Phone No</th>
+                                            <th>Room No</th>
+                                            <th>Education</th>
+                                            <th>Address</th>
+                                            <th>View</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </thead>
+
+
+                                    <tbody id="studentTableBody">
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                            <div class="row">
+                                <!-- <div class="col-md-6 align-self-center">
+                                    <p id="dataTable_info" class="dataTables_info" role="status"
+                                        aria-live="polite">
+                                        Showing 1 to 10 of 27</p>
+                                </div> -->
+                                <div class="col-md-6">
+                                    <nav
+                                        class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                                        <ul class="pagination" id="pagination">
+                                            <li class="page-item disabled"><a class="page-link"
+                                                    aria-label="Previous" href="#"><span
+                                                        aria-hidden="true">«</span></a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">1</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" aria-label="Next"
+                                                    href="#"><span aria-hidden="true">»</span></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="bg-white sticky-footer">
+                <div class="container my-auto">
+                    <div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
+                </div>
+            </footer>
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script>
+
+
+        const userTable = document.getElementById('user-table');
+            const recordsPerPageSelect = document.getElementById('records-per-page');
+            const searchInput = document.getElementById('search');
+            const paginationList = document.getElementById('pagination');
+        
+            let studentData = []; // Store all student data here
+            let currentPage = 1;
+            let recordsPerPage = 25;
+            let searchQuery = '';
+        
+            // Function to update the UI
+            function updateUI() {
+              const startIndex = (currentPage - 1) * recordsPerPage;
+              const endIndex = startIndex + recordsPerPage;
+        
+              const filteredData = studentData.filter((student) => {
+    const nameMatches = student.name.toLowerCase().includes(searchQuery.toLowerCase());
+    const idMatches = student.admissionId.toLowerCase().includes(searchQuery.toLowerCase());
+    return nameMatches || idMatches;
+  });
+
+              const tbody = userTable.querySelector('tbody');
+              tbody.innerHTML = ''; // Clear the table body before inserting new data
+        
+              const pageData = filteredData.slice(startIndex, endIndex);
+        
+              pageData.forEach((student) => {
+                tbody.insertAdjacentHTML('beforeend', `<tr>
+                  <td>${student.admissionId}</td>
+                  <td>${student.name}</td>
+                  <td>${student.phone}</td>
+                  <td>${student.room}</td>
+                  <td>${student.eduCategory}::${student.eduCourse}(${student.eduYear})</td>
+                  <td>${student.address}</td>
+                  <td style="text-align: center;"><a href="#" onclick='view_student(${student.admissionId})'><i class="fas fa-eye text-info" style="font-size: 23px;height: 20px;"></i></a></td>
+                  <td style="text-align: center;"><a href="#"><i class="fas fa-pen text-success" style="height: 20px;font-size: 20px;"></i></a></td>
+                  <td style="text-align: center;"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 24 24" width="1em" fill="currentColor" class="text-danger" style="text-align: center;font-size: 30px;"><path d="M0 0h24v24H0z" fill="none"></path><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z"></path></svg></a></td>
+                </tr>`);
+              });
+        
+              // Update pagination here
+         // Update pagination here
+        const totalPages = Math.ceil(filteredData.length / recordsPerPage);
+        paginationList.innerHTML = '';
+        
+        // Add a "Previous" button
+        const previousPage = document.createElement('li');
+        previousPage.innerHTML = `<a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a>`;
+        previousPage.addEventListener('click', () => {
+          if (currentPage > 1) {
+            currentPage--;
+            updateUI();
+          }
+        });
+        previousPage.classList.add('page-item');
+        paginationList.appendChild(previousPage);
+        
+        for (let i = 1; i <= totalPages; i++) {
+          const pageLink = document.createElement('li');
+          pageLink.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+          pageLink.classList.add('page-item');
+          if (i === currentPage) {
+            pageLink.classList.add('active');
+          }
+          pageLink.addEventListener('click', () => {
+            currentPage = i;
+            updateUI();
+          });
+          paginationList.appendChild(pageLink);
+        }
+        
+        // Add a "Next" button
+        const nextPage = document.createElement('li');
+        nextPage.innerHTML = `<a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a>`;
+        nextPage.addEventListener('click', () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updateUI();
+          }
+        });
+        nextPage.classList.add('page-item');
+        paginationList.appendChild(nextPage);
+        
+            }
+        
+            // Event listeners for filter and search controls
+            recordsPerPageSelect.addEventListener('change', () => {
+              recordsPerPage = parseInt(recordsPerPageSelect.value);
+              currentPage = 1;
+              updateUI();
+            });
+        
+            searchInput.addEventListener('input', () => {
+              searchQuery = searchInput.value;
+              currentPage = 1;
+              updateUI();
+            });
+        
+            // Fetch and display user data
+            async function fetchAndDisplayUserData() {
+              try {
+                // Replace the next line with your actual code to fetch student data
+                const userData = await window.electronAPI.fetchStudentData();
+              
+                studentData = userData;
+                updateUI();
+              } catch (error) {
+                console.error('Error fetching user data:', error);
+              }
+            }
+        
+            // Call the function to fetch and display user data
+            fetchAndDisplayUserData();
+
+
+
+
+
+
+
+            //view studetn
+
+            function view_student(admissionId){
+                localStorage.setItem('admissionId', admissionId);
+                //window.open('./view_student.html','_top');
+                window.location.href='./view_student.html';
+
+
+            }
+          </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+    
+</body>
+
+</html>

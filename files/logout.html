@@ -1,0 +1,31 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <title>Document</title>
+ </head>
+ <body>
+    
+    <script src="../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script>
+       
+    localStorage.clear();
+    Swal.fire({
+            icon: 'success',
+            title: 'Log Out Successful!',
+            text: 'Thanks For Using ',
+        });
+        setTimeout(() => {
+            window.location.href="index.html"
+        }, 2000);
+   
+
+    </script>
+ </body>
+ </html>
+
+
+
+

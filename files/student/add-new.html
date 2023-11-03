@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html data-bs-theme="light" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>Profile - Brand</title>
+  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../assets/fonts/fontawesome-all.min.css" />
+  <link rel="stylesheet" href="../assets/css/styles.min.css" />
+  <link rel="stylesheet" type="text/css" href="../../node_modules/sweetalert2/dist/sweetalert2.min.css" />
+
+  <style>
+    #upload-profile {
+      cursor: pointer;
+    }
+
+    .selected {
+      background-color: #1cc88a;
+    }
+
+    .selected a {
+      color: white;
+    }
+.roomFull{
+  background-color: red;
+}
+
+.roomFull a{
+  color: white;
+}
+
+
+  </style>
+</head>
+
+<body id="page-top">
+  <div id="wrapper">
+    <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
+      <div class="container-fluid d-flex flex-column p-0">
+        <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+          <p><em></em></p>
+        </a>
+        <hr class="sidebar-divider my-0" />
+        <ul class="navbar-nav text-light" id="accordionSidebar">
+          <li class="nav-item">
+            <a class="nav-link" href="../dashboard.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="students.html"><i class="fas fa-user"></i><span>Students</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../Room/rooms.html"><i class="fas fa-table"></i><span>Rooms</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../logout.html"><i class="far fa-user-circle"></i><span>Log-Out</span></a>
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+        <div class="text-center d-none d-md-inline">
+          <button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button>
+        </div>
+      </div>
+    </nav>
+    <div class="d-flex flex-column" id="content-wrapper">
+      <div id="content">
+        <nav class="navbar navbar-expand bg-white shadow mb-4 topbar static-top navbar-light">
+          <div class="container-fluid">
+            <button class="btn btn-link d-md-none rounded-circle me-3" id="sidebarToggleTop" type="button">
+              <i class="fas fa-bars"></i>
+            </button>
+            <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+              <p>
+                १००० मुला-मुलींचे शासकीय वसतिगृह&nbsp;,समाज कल्याण, लातूर
+                &nbsp;
+              </p>
+            </a>
+            <ul class="navbar-nav flex-nowrap ms-auto">
+              <!-- <p style="color: red;">*<span id="status">my name is sagar</span></p> -->
+              <li class="nav-item dropdown d-sm-none no-arrow">
+                <a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#"><i
+                    class="fas fa-search"></i></a>
+                <div class="dropdown-menu dropdown-menu-end p-3 animated--grow-in" aria-labelledby="searchDropdown">
+                  <form class="me-auto navbar-search w-100">
+                    <div class="input-group">
+                      <input class="bg-light form-control border-0 small" type="text" placeholder="Search for ..." />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary py-0" type="button">
+                          <i class="fas fa-search"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <div class="container-fluid">
+          <div class="d-sm-flex justify-content-between align-items-center mb-4">
+            <h3 class="text-dark mb-0">Add New Student</h3>
+            <a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" id="submit-all">Save Info
+            </a>
+          </div>
+          <div class="row mb-3">
+            <div class="col-lg-4">
+              <div class="card mb-3">
+                <div class="card-body text-center shadow">
+                  <img id="upload-profile" onclick="imgclick()" class="rounded-circle mb-3 mt-4"
+                    src="../assets/img/dogs/image2.jpeg" width="160" height="160" />
+                  <input type="file" id="profile-photo-input" style="display: none" accept="image/*" />
+                  <div class="mb-3">
+                    <!-- <button id="upload-btn" class="btn btn-primary btn-sm" style='display: none;' type="button">Upload</button> -->
+                  </div>
+                </div>
+              </div>
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="text-primary fw-bold m-0">Education Details</h6>
+                </div>
+                <div class="card-body">
+                  <form id="form-education">
+                    <div class="mb-3">
+                      <label class="form-label" for="address"><strong>Category</strong></label>
+                      <select class="form-select" name="eduCategory">
+                        <option value="11th-12th" selected>
+                          ११ वी & १२ वी
+                        </option>
+                        <option value="graduation">पदवी</option>
+                        <option value="post-graduation">पदवीयोत्तर</option>
+                        <option value="professional">व्यावसायिक</option>
+                      </select>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="mb-3">
+                          <label class="form-label" for="city"><strong>Course Name</strong></label><input 
+                            class="form-control" type="text" value="" placeholder="Enter Course Name"
+                            name="eduCourse" />
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="mb-3">
+                          <label class="form-label" for="country"><strong>Year Of study</strong></label><input
+                            class="form-control" type="text" placeholder="Enter Study Year" value="" name="eduYear" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <!-- <button class="btn btn-primary btn-sm" type="submit">Ok</button> -->
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="accordion" role="tablist" id="accordion-1">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" role="tab">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#accordion-1 .item-1" aria-expanded="false" aria-controls="accordion-1 .item-1">
+                      Emergency Info
+                    </button>
+                  </h2>
+                  <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-1">
+                    <div class="accordion-body">
+                      <div class="card-body">
+                        <form id="form-emergency">
+                          <div class="mb-3">
+                            <label class="form-label form-label" for="city"><strong>नातेवाईकाचे
+                                नाव</strong></label><input class="form-control form-control" type="text" id="city-2"
+                              placeholder="Enter Relatives Name" name="emeName" value="" />
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label form-label"
+                                  for="country"><strong>&nbsp;नाते</strong></label><input
+                                  class="form-control form-control" type="text" value="" id="country-2"
+                                  placeholder="Relation" name="emeRelation" />
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="mb-3">
+                                <label class="form-label form-label" for="country"><strong>Phone</strong></label><input
+                                  class="form-control form-control" type="text" id="country-3" value=""
+                                  placeholder="Relatives Phone Number" name="emePhone" />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-3">
+                            <!-- <button class="btn btn-primary btn-sm"
+                              type="submit">Ok</button> -->
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8">
+              <div class="row mb-3 d-none">
+                <div class="col">
+                  <div class="card text-white bg-primary shadow">
+                    <div class="card-body">
+                      <div class="row mb-2">
+                        <div class="col">
+                          <p class="m-0">Peformance</p>
+                          <p class="m-0"><strong>65.2%</strong></p>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-rocket fa-2x"></i>
+                        </div>
+                      </div>
+                      <p class="text-white-50 small m-0">
+                        <i class="fas fa-arrow-up"></i>&nbsp;5% since last
+                        month
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="card text-white bg-success shadow">
+                    <div class="card-body">
+                      <div class="row mb-2">
+                        <div class="col">
+                          <p class="m-0">Peformance</p>
+                          <p class="m-0"><strong>65.2%</strong></p>
+                        </div>
+                        <div class="col-auto">
+                          <i class="fas fa-rocket fa-2x"></i>
+                        </div>
+                      </div>
+                      <p class="text-white-50 small m-0">
+                        <i class="fas fa-arrow-up"></i>&nbsp;5% since last
+                        month
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="card shadow mb-3">
+                    <div class="card-header py-3">
+                      <p class="text-primary m-0 fw-bold">Personal Info</p>
+                    </div>
+                    <div class="card-body">
+                      <form id="form-personal">
+                        <div class="row">
+                          <div class="col-3">
+                            <div class="mb-3">
+                              <label class="form-label"><strong>Admission ID</strong></label><input class="form-control"
+                                type="text" id="username" placeholder="ID Here" name="admissionId" value="" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label"><strong>Phone No</strong></label><input class="form-control"
+                                type="text" id="email" value="" placeholder="+91-9876543210" name="phone" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="email"><strong>Email ID</strong></label><input
+                                class="form-control" type="email" id="email-1" placeholder="student@example.com"
+                                value="" name="email" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="first_name"><strong>Student Name</strong></label><input
+                                class="form-control" type="text" id="first_name" placeholder="Enter Student Name Here"
+                                value="" name="name" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="address"><strong>Select Gender</strong></label><select
+                                class="form-select form-select" name="gender" id="cars">
+                                <option value="Male" selected>Male</option>
+                                <option value="Female">Female</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="accordion mb-2" role="tablist" id="accordion-2">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" role="tab">
+                              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#accordion-2 .item-1" aria-expanded="false"
+                                aria-controls="accordion-2 .item-1">
+                                Allocate Room
+                              </button>
+                            </h2>
+                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                              data-bs-parent="#accordion-2">
+                              <div class="accordion-body">
+                                <div class="row">
+                                  <div
+                                    class="col text-center d-xl-flex justify-content-xl-center align-items-xl-center">
+                                    <p class="text-primary m-0 fw-bold">
+                                      Room Allocation
+                                    </p>
+                                  </div>
+                                  <div class="col">
+                                    <div class="mb-3">
+                                      <label class="form-label" for="address"><strong>Select
+                                          Floor</strong></label><select class="form-select form-select" name="category"
+                                        id="floorSelector">
+                                        <option value="1">1st</option>
+                                        <option value="2">2nd</option>
+                                        <option value="3">3rd</option>
+                                        <option value="4">4th</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="table-responsive">
+                                      <table class="table" id="room-table">
+                                        <tbody>
+                                          <tr>
+                                            <td id="">
+                                              <div id="td" style="
+                                                    display: flex;
+                                                    flex-direction: row;
+                                                  "></div>
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3 mt-3">
+                          <!-- <button class="btn btn-primary btn-sm" type="submit">Ok
+                            </button> -->
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="card shadow">
+                    <div class="card-header py-3">
+                      <p class="text-primary m-0 fw-bold">Contact Info</p>
+                    </div>
+                    <div class="card-body">
+                      <form id="form-contact">
+                        <div class="mb-3">
+                          <label class="form-label" for="address"><strong>Student Address</strong></label><input
+                            class="form-control" type="text" id="address" placeholder="Enter Student Address" value=""
+                            name="address" />
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="city"><strong>Village</strong></label><input
+                                class="form-control" type="text" id="city" placeholder="Enter student Village Here"
+                                value="" name="village" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="country"><strong>Taluka and District</strong></label><input
+                                class="form-control" type="text" id="country" placeholder="Ex. Nilanga & Latur" value=""
+                                name="talukaDistrict" />
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="mb-3">
+                              <label class="form-label" for="country"><strong>PIN Code</strong></label><input
+                                class="form-control" type="number"  placeholder="Enter Pincode" value="" name="pin" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="mb-3">
+                          <!-- <button class="btn btn-primary btn-sm"
+                            type="submit">Ok</button> -->
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer class="bg-white sticky-footer">
+        <div class="container my-auto">
+          <div class="text-center my-auto copyright">
+            <span>Copyright © Brand 2023</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+  </div>
+  <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="../assets/js/script.min.js"></script>
+  <script src="../../node_modules/sweetalert2/dist/sweetalert2.min.js"></script>
+
+  <script>
+    // const electronAPI = window.electronAPI;
+
+    const formPersonal = document.getElementById("form-personal");
+    const formEmergency = document.getElementById("form-emergency");
+    const formEducation = document.getElementById("form-education");
+    const formContact = document.getElementById("form-contact");
+    const img = document.getElementById("profile-photo-input");
+    const uploadButton = document.getElementById("upload-btn");
+    const roomElements = document.querySelectorAll(".roomN");
+    const profile = document.getElementById("upload-profile");
+    const submitButton = document.getElementById("submit-all");
+    let selectedSeat = null;
+    var imagePath = "";
+    var roomNo = "";
+
+    function imgclick() {
+      img.click();
+    }
+
+    img.addEventListener("change", () => {
+      if (img.files.length > 0) {
+        // uploadButton.style.display = '';
+        const selectedFile = img.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          profile.src = event.target.result;
+        };
+        reader.readAsDataURL(selectedFile);
+      } else {
+        uploadButton.style.display = "none";
+      }
+    });
+
+    // uploadButton.addEventListener('click', async (event) => {
+    //   event.preventDefault();
+
+    //     // Display success message or handle other actions
+
+    // });
+
+    submitButton.addEventListener("click", async () => {
+      imagePath = await window.electronAPI.uploadProfilePhoto(img.files[0]);
+      console.log(imagePath);
+      if (imagePath) {
+        const username = localStorage.getItem("user");
+        // console.log('this is demo jaaan: ',roomNo);
+        const personalData = new FormData(formPersonal);
+        const emergencyData = new FormData(formEmergency);
+        const educationData = new FormData(formEducation);
+        const contactData = new FormData(formContact);
+        personalData.append("profile", imagePath);
+        personalData.append("roomNo", roomNo);
+        personalData.append("user", username);
+        const formData = {
+          personalData: Array.from(personalData.entries()),
+          emergencyData: Array.from(emergencyData.entries()),
+          educationData: Array.from(educationData.entries()),
+          contactData: Array.from(contactData.entries()), // Convert to array for sending
+        };
+
+        await window.electronAPI.submitStudentData(formData);
+        console.log("student data inserted");
+
+        Swal.fire({
+          icon: "success",
+          title: "Inserted!",
+          text: "Student Data Inserted Successfully... ",
+        });
+        setTimeout(() => {
+          window.location.href = "../dashboard.html";
+        }, 1000);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "ERROR!",
+          text: "Something Went Wrong... ",
+        });
+      }
+
+      // Display success message or handle other actions
+    });
+
+    const floorSelector = document.getElementById("floorSelector");
+    const roomContainer = document.querySelector(".room-container");
+    const userTable = document.getElementById("room-table");
+
+    async function fetchAndDisplayRooms(floor) {
+      try {
+        // Fetch room data from the database
+        const roomData = await window.electronAPI.fetchRoomData();
+        // Filter room data for the selected floor
+        const filteredRooms = roomData.filter(
+          (room) => room.floorNo == floor
+        );
+
+        // Populate room elements in the room container
+        const td = document.getElementById("td");
+        td.innerHTML = "";
+
+        filteredRooms.forEach((room) => {
+          let fullOrNot;
+          if (room.totalStudents >= 4) {
+            fullOrNot = 'roomFull';
+          }
+          td.insertAdjacentHTML(
+            "beforeend",
+            `  <div data-roomno="${room.roomNo}" onclick="selectRoom(this)" data-totalStudent=' ${room.totalStudents}'
+                                                class="${fullOrNot} text-center d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center roomN "
+                                                data-bs-toggle="tooltip" data-bss-tooltip=""
+                                                style="width: 40px;height: 40px;padding: 2px;box-shadow: inset 0px 0px;margin: 5px;border: 1px solid var(--bs-success);border-radius: 10px;"
+                                                title="Students: ${room.totalStudents}"><a href="#">${room.roomNo}</a></div>`
+          );
+        });
+      } catch (error) {
+        console.error("Error fetching room data:", error);
+      }
+    }
+
+    // Attach an event listener to the floor selector
+    floorSelector.addEventListener("change", () => {
+      const selectedFloor = parseInt(floorSelector.value);
+      fetchAndDisplayRooms(selectedFloor);
+    });
+
+    // Initial call to populate rooms based on the default selected floor
+    fetchAndDisplayRooms(parseInt(floorSelector.value));
+
+
+
+    let selectedRoomElement = null; // Initialize with no selected room
+    function selectRoom(roomElement) {
+      if (selectedRoomElement) {
+        selectedRoomElement.classList.remove("selected");
+      }
+
+      //  roomNo = roomElement.getAttribute("data-roomno");
+      const totalStudents = roomElement.getAttribute("data-totalStudent");
+      if (totalStudents == 4) {
+        roomElement.classList.add("roomFull");
+      } else {
+        roomElement.classList.add("selected");
+        roomNo = roomElement.getAttribute("data-roomno");
+        selectedRoomElement = roomElement;
+      }
+      // Update the selected room element
+    }
+
+    // Function to set the selected room number
+  </script>
+</body>
+
+</html>
