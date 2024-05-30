@@ -46,8 +46,8 @@ To set up and run this project, you need the following:
 
 1. **Clone the repository**
    ```sh
-   git clone https://github.com/yourusername/hostel-management-system.git
-   cd hostel-management-system
+   git clone https://github.com/SagarInnovate/Hostel-Management-System-for-Government-Hostels-using-ElectronJs.git
+   cd Hostel-Management-System-for-Government-Hostels-using-ElectronJs
 2. **Install dependencies**
     ```sh
     npm install
